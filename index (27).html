@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Express Appliance Care & HVAC in Chicago. 30 years of appliance repair, HVAC service, and installation. Same-day service available. Serving refrigerator, washer, dryer, hot water tank, AC, furnace repair. Call 773-255-1773 for free estimate.">
+    <meta name="keywords" content="appliance repair Chicago, HVAC repair Chicago, refrigerator repair, hot water tank repair, washer dryer repair, AC repair Chicago, furnace repair Chicago, emergency appliance repair">
+    <meta name="geo.position" content="41.8781;-87.6298">
+    <meta name="ICBM" content="41.8781,-87.6298">
+    <meta name="geo.placename" content="Chicago, Illinois">
+    <title>Express Appliance Care & HVAC | Chicago Appliance & HVAC Repair Service</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <!-- JSON-LD Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org/",
+        "@type": "LocalBusiness",
+        "name": "Express Appliance Care & HVAC",
+        "image": "https://expressapplianceonline.com/images/logo.jpg",
+        "description": "Professional appliance and HVAC repair and installation service in Chicago with 30+ years of experience.",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1435 East 83rd Street",
+            "addressLocality": "Chicago",
+            "addressRegion": "IL",
+            "postalCode": "60619",
+            "addressCountry": "US"
+        },
+        "telephone": "773-255-1773",
+        "url": "https://expressapplianceonline.com",
+        "email": "service@expressapplianceonline.com",
+        "priceRange": "$$",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "bestRating": "5",
+            "worstRating": "1",
+            "ratingCount": "161"
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Monday",
+                "opens": "09:00",
+                "closes": "12:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "08:00",
+                "closes": "15:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "07:00",
+                "closes": "12:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Sunday",
+                "opens": "09:00",
+                "closes": "12:00"
+            }
+        ],
+        "service": [
+            {
+                "@type": "Service",
+                "name": "Refrigerator Repair",
+                "areaServed": "Chicago, IL"
+            },
+            {
+                "@type": "Service",
+                "name": "Hot Water Tank Installation & Repair",
+                "areaServed": "Chicago, IL"
+            },
+            {
+                "@type": "Service",
+                "name": "Washer & Dryer Repair",
+                "areaServed": "Chicago, IL"
+            },
+            {
+                "@type": "Service",
+                "name": "AC Repair and Installation",
+                "areaServed": "Chicago, IL"
+            },
+            {
+                "@type": "Service",
+                "name": "Furnace Repair & Service",
+                "areaServed": "Chicago, IL"
+            }
+        ]
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0052CC;
+            --accent-red: #FF4444;
+            --light-gray: #f8f9fa;
+            --dark-gray: #333;
+            --text-gray: #666;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-gray);
+        }
+
+        /* Header with Info Bar */
+        .info-bar {
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+        }
+
+        .info-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 14px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dark-gray);
+        }
+
+        .info-icon {
+            color: var(--primary-blue);
+            font-size: 18px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .phone-link {
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--primary-blue);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            height: 80px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 20px 15px;
+            font-weight: 500;
+            transition: background 0.3s;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Services Dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--primary-blue);
+            min-width: 300px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            padding: 12px 0;
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            border-radius: 4px;
+            margin-top: 0;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            border: none;
+            background: none;
+            font-weight: 400;
+            transition: background 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown > a::after {
+            content: ' ▼';
+            font-size: 10px;
+        }
+
+        nav .logo {
+            font-size: 16px;
+            font-weight: 700;
+            margin-right: auto;
+            padding: 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, white 100%);
+            padding: 60px 20px;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: var(--text-gray);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .hero-cta {
+            margin-top: 30px;
+        }
+
+        .cta-button {
+            background: var(--accent-red);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            background: #ff2222;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,68,68,0.3);
+        }
+
+        .hero-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .hero-image {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            height: 250px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Video Carousel */
+        .hero-videos {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-video {
+            background: black;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            height: 250px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .hero-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Why Choose Us */
+        .why-choose {
+            background: white;
+            padding: 60px 20px;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: var(--dark-gray);
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .promises-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .promise-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .promise-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+        }
+
+        .promise-card h3 {
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .promise-card p {
+            color: var(--text-gray);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .guarantees {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .guarantee-box {
+            border: 3px solid var(--primary-blue);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .guarantee-box:hover {
+            box-shadow: 0 5px 15px rgba(0,82,204,0.2);
+            transform: translateY(-5px);
+        }
+
+        .guarantee-box h4 {
+            color: var(--primary-blue);
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .guarantee-box p {
+            color: var(--dark-gray);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Services Section */
+        .services {
+            background: var(--primary-blue);
+            color: white;
+            padding: 60px 20px;
+        }
+
+        .services .section-title {
+            color: white;
+        }
+
+        .services p {
+            text-align: center;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+
+        .services-carousel {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+
+        .service-card h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 16px;
+            text-transform: capitalize;
+        }
+
+        /* HVAC Services */
+        .hvac {
+            background: white;
+            padding: 60px 20px;
+        }
+
+        .hvac .section-title {
+            color: var(--dark-gray);
+        }
+
+        .hvac-carousel {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .hvac-card {
+            background: var(--light-gray);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .hvac-card:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+
+        .hvac-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .hvac-card h3 {
+            color: var(--dark-gray);
+            margin-bottom: 10px;
+        }
+
+        /* Brands Section */
+        .brands {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23333" width="1200" height="400"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .brands .section-title {
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .brand-logo {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--dark-gray);
+            transition: all 0.3s;
+        }
+
+        .brand-logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255,255,255,0.2);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: white;
+            padding: 60px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 48px;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .stat-item p {
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--light-gray);
+            padding: 60px 20px;
+        }
+
+        .testimonials .section-title {
+            color: var(--dark-gray);
+            margin-bottom: 50px;
+        }
+
+        .testimonials-carousel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+
+        .testimonial-rating {
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .testimonial-text {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--dark-gray);
+            font-size: 14px;
+        }
+
+        .testimonial-source {
+            color: var(--primary-blue);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* Blog Section */
+        .blog {
+            background: white;
+            padding: 60px 20px;
+        }
+
+        .blog .section-title {
+            color: var(--dark-gray);
+            margin-bottom: 50px;
+        }
+
+        .blog-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 180px;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+
+        .blog-content {
+            padding: 20px;
+        }
+
+        .blog-content h3 {
+            color: var(--dark-gray);
+            font-size: 16px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .blog-content p {
+            color: var(--text-gray);
+            font-size: 13px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+            color: white;
+            padding: 60px 20px;
+        }
+
+        .contact-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .contact-info h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .contact-item {
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .contact-icon {
+            font-size: 24px;
+            color: var(--primary-blue);
+            min-width: 30px;
+        }
+
+        .contact-item div {
+            flex: 1;
+        }
+
+        .contact-item a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        .social-links {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-red);
+            transform: translateY(-3px);
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 10px;
+            color: var(--dark-gray);
+        }
+
+        .contact-form h3 {
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-gray);
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0,82,204,0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group button {
+            background: var(--accent-red);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group button:hover {
+            background: #ff2222;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,68,68,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            color: rgba(255,255,255,0.7);
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        /* Text Service Thumbnail */
+        .text-service-cta {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-red));
+            padding: 40px 20px;
+            text-align: center;
+            margin: 60px 0 0 0;
+        }
+
+        .text-service-cta h3 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .text-service-cta p {
+            color: rgba(255,255,255,0.9);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .text-service-btn {
+            display: inline-block;
+            background: white;
+            color: var(--primary-blue);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .text-service-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Floating Call Button */
+        .floating-call {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255,68,68,0.4);
+            transition: all 0.3s;
+            z-index: 50;
+            text-decoration: none;
+        }
+
+        .floating-call:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255,68,68,0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 32px;
+            }
+
+            .services-carousel,
+            .hvac-carousel,
+            .brands-grid,
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .info-bar-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            nav a {
+                font-size: 14px;
+                padding: 15px 10px;
+            }
+
+            .promises-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .services-carousel,
+            .hvac-carousel,
+            .brands-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 24px;
+            }
+
+            nav a {
+                font-size: 12px;
+                padding: 12px 8px;
+            }
+
+            .floating-call {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Info Bar -->
+    <div class="info-bar">
+        <div class="info-bar-content">
+            <div class="info-item">
+                <span class="info-icon">📍</span>
+                <span>83rd St & Stoney Island, Chicago, IL 60619 | 30 mile radius</span>
+            </div>
+            <div class="info-item">
+                <span class="info-icon">🕐</span>
+                <span>Mon-Fri: 8:00am-3:00pm | Sat: 7:00am-12:00pm | Sun: 9:00am-12:00pm</span>
+            </div>
+            <div class="info-item">
+                <span class="info-icon">📞</span>
+                <a href="tel:7732551773" class="phone-link">773-255-1773</a> | <span style="color: var(--accent-red); font-weight: 700;">Text for faster service</span>
+            </div>
+            <div class="info-item">
+                <span class="info-icon">💰</span>
+                <span>Ask about senior pricing</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <a href="#home" class="logo" style="padding: 0; margin-right: auto; display: flex; align-items: center; max-height: 80px; overflow: hidden;">
+                <img src="images/logo.jpg" alt="Express Appliance Care & HVAC" style="height: 138px; object-fit: contain;">
+            </a>
+            <a href="#home">Home</a>
+            <a href="#about">About us</a>
+            <div class="dropdown">
+                <a href="#contact">Services</a>
+                <div class="dropdown-content">
+                    <a href="#contact">Refrigerator Repair</a>
+                    <a href="#contact">Hot Water Tank Installation & Repair</a>
+                    <a href="#contact">Washer & Dryer Repair</a>
+                    <a href="#contact">Stove & Oven Repair</a>
+                    <a href="#contact">Freezer Repair</a>
+                    <a href="#contact">Microwave Repair</a>
+                    <a href="#contact">Garbage Disposal</a>
+                    <a href="#contact">AC Repair & Installation</a>
+                    <a href="#contact">Furnace Repair & Service</a>
+                    <a href="#contact">Duct Cleaning & Repair</a>
+                </div>
+            </div>
+            <a href="#brands">Brands</a>
+            <a href="#testimonials">Reviews</a>
+            <a href="#blog">Blog</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Professional Appliance & HVAC Repair in Chicago | Same-Day Service</h1>
+                <p style="font-size: 18px; font-weight: 600; color: var(--accent-red); margin: 10px 0 15px 0;">We don't guess we test</p>
+                <p>Expert repair, maintenance, and installation service in Chicago. 30+ years of experience. 4.8/5 rating with 161 reviews.</p>
+                <p style="font-size: 16px; font-style: normal; color: var(--dark-gray); margin-top: 20px;">Fast response. Same-day service available. Up to one year warranty on work performed, parts and labor.</p>
+                <div class="hero-cta">
+                    <a href="#contact" class="cta-button">Make an Appointment</a>
+                    <p style="margin-top: 15px; color: var(--primary-blue); font-weight: 600;">Text for faster service</p>
+                </div>
+            </div>
+            <div class="hero-videos">
+                <div class="hero-video">
+                    <video width="300" height="250" autoplay muted loop style="width:100%; height:100%; object-fit:cover;">
+                        <source src="videos/refrigerator%2022%20video.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="hero-video">
+                    <video width="300" height="250" autoplay muted loop style="width:100%; height:100%; object-fit:cover;">
+                        <source src="videos/hvac%2020%20video.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="hero-video">
+                    <video width="300" height="250" autoplay muted loop style="width:100%; height:100%; object-fit:cover;">
+                        <source src="videos/stove%20Video%2023%20.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="hero-video">
+                    <video width="300" height="250" autoplay muted loop style="width:100%; height:100%; object-fit:cover;">
+                        <source src="videos/refrigerator16_Video.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose" id="about">
+        <div class="section-container">
+            <h2 class="section-title">Why Choose Express Appliance Care & HVAC</h2>
+            <div class="promises-grid">
+                <div class="promise-card">
+                    <div class="promise-icon">👥</div>
+                    <h3>Outstanding Workmanship</h3>
+                    <p>Our technicians are knowledgeable, professional, and committed to customer satisfaction.</p>
+                </div>
+                <div class="promise-card">
+                    <div class="promise-icon">⏱️</div>
+                    <h3>Fast Response</h3>
+                    <p>We provide same-day service and arrive on time. Quality work with minimal disruption.</p>
+                </div>
+                <div class="promise-card">
+                    <div class="promise-icon">✅</div>
+                    <h3>Quality Guarantee</h3>
+                    <p>Up to one year warranty on work performed, parts and labor. If it's not right, we make it right.</p>
+                </div>
+            </div>
+
+            <div class="guarantees">
+                <div class="guarantee-box">
+                    <h4>💰 Competitive Pricing</h4>
+                    <p>Fair pricing with no surprise charges</p>
+                </div>
+                <div class="guarantee-box">
+                    <h4>⚡ Same Day Service</h4>
+                    <p>Get your appliance working today</p>
+                </div>
+                <div class="guarantee-box">
+                    <h4>🛡️ Up to One Year Warranty</h4>
+                    <p>Work performed, parts and labor covered</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- HVAC Services -->
+    <section class="hvac">
+        <div class="section-container">
+            <h2 class="section-title">HVAC Repair & Installation in Chicago</h2>
+            <p style="text-align: center; color: var(--text-gray); margin-bottom: 40px;">AC repair, furnace service, and complete heating and cooling solutions for Chicago homes and businesses</p>
+            <div class="hvac-carousel">
+                <div class="hvac-card">
+                    <div class="hvac-icon">❄️</div>
+                    <h3>AC Repair & Installation</h3>
+                </div>
+                <div class="hvac-card">
+                    <div class="hvac-icon">🔥</div>
+                    <h3>Furnace Repair & Service</h3>
+                </div>
+                <div class="hvac-card">
+                    <div class="hvac-icon">💨</div>
+                    <h3>Duct Cleaning & Repair</h3>
+                </div>
+                <div class="hvac-card">
+                    <div class="hvac-icon">🌡️</div>
+                    <h3>Heating System Service</h3>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#contact" class="cta-button">Schedule Your HVAC Service</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seasonal Maintenance -->
+    <section class="seasonal-maintenance" style="background: #f8f9fa; padding: 60px 20px;">
+        <div class="section-container">
+            <h2 class="section-title">HVAC & Appliance Maintenance Plans</h2>
+            <p style="text-align: center; color: var(--text-gray); margin-bottom: 40px;">Preventative maintenance keeps your systems running smoothly. Seasonal tune-ups and filter replacements prevent expensive repairs</p>
+            <div class="hvac-carousel">
+                <div class="hvac-card">
+                    <div class="hvac-icon">🍂</div>
+                    <h3>Fall Furnace Prep</h3>
+                    <p style="font-size: 14px; margin-top: 15px;">Filter replacement, safety inspection, and system tune-up before winter</p>
+                </div>
+                <div class="hvac-card">
+                    <div class="hvac-icon">❄️</div>
+                    <h3>Winter System Check</h3>
+                    <p style="font-size: 14px; margin-top: 15px;">Heating efficiency testing and emergency service availability</p>
+                </div>
+                <div class="hvac-card">
+                    <div class="hvac-icon">🌱</div>
+                    <h3>Spring AC Tune-Up</h3>
+                    <p style="font-size: 14px; margin-top: 15px;">Cooling system inspection and preparation for summer use</p>
+                </div>
+                <div class="hvac-card">
+                    <div class="hvac-icon">🧹</div>
+                    <h3>Duct & Filter Cleaning</h3>
+                    <p style="font-size: 14px; margin-top: 15px;">Deep cleaning and replacement to improve air quality and efficiency</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#contact" class="cta-button">Book Seasonal Maintenance</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands -->
+    <section class="brands" id="brands">
+        <h2 class="section-title">Appliance Repair for All Major Brands</h2>
+        <p style="text-align: center; color: var(--text-gray); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">We repair GE, Whirlpool, Samsung, LG, Maytag, Kenmore, Bosch, Carrier, Lennox, and Frigidaire appliances and HVAC systems</p>
+        <div class="brands-grid">
+            <div class="brand-logo">GE</div>
+            <div class="brand-logo">Whirlpool</div>
+            <div class="brand-logo">Samsung</div>
+            <div class="brand-logo">LG</div>
+            <div class="brand-logo">Maytag</div>
+            <div class="brand-logo">Kenmore</div>
+            <div class="brand-logo">Bosch</div>
+            <div class="brand-logo">Carrier</div>
+            <div class="brand-logo">Lennox</div>
+            <div class="brand-logo">Frigidaire</div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="#contact" class="cta-button">We Service Your Brand Too</a>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Satisfaction Guaranteed</p>
+            </div>
+            <div class="stat-item">
+                <h3>30</h3>
+                <p>Years of Experience</p>
+            </div>
+            <div class="stat-item">
+                <h3>12,700+</h3>
+                <p>Happy Customers</p>
+            </div>
+            <div class="stat-item">
+                <h3>3,600+</h3>
+                <p>Items Repaired</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="testimonials-carousel">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Rod did a fantastic job on our refrigerator. Smart, professional, and timely service. He made only the necessary repairs - can be trusted to do the job right the first time!"</p>
+                    <div class="testimonial-author">Diane L.</div>
+                    <div class="testimonial-source">HomeAdvisor</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Very professional, efficient and helpful! I will be booking again for all of my future HVAC needs. I've referred him to all of my elderly family members. Best appliance team I've used in years!"</p>
+                    <div class="testimonial-author">Trayanna C.</div>
+                    <div class="testimonial-source">Google Reviews</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Great price, fast and efficient service, customer focused. Had to get my fridge repaired after it stopped working. Called a few companies but these guys had the best price and fixed it within 90 minutes."</p>
+                    <div class="testimonial-author">Phyllis J.</div>
+                    <div class="testimonial-source">Google Reviews</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Very good service. Rod recognized the problem with our faulty washing machine right away, explained the issue to us, and fixed it immediately. The pricing was very fair and reasonable."</p>
+                    <div class="testimonial-author">Stephen K.</div>
+                    <div class="testimonial-source">Google Reviews</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog -->
+    <section class="blog" id="blog">
+        <div class="section-container">
+            <h2 class="section-title">Appliance & HVAC Repair Tips & Articles</h2>
+            <p style="text-align: center; color: var(--text-gray); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Learn about common appliance and HVAC problems, maintenance tips, and when to call a professional technician</p>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image"><img src="images/refrigerator/refrigerator%2018.jpeg" alt="Signs of refrigerator repair needed Chicago" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="blog-content">
+                        <h3>Signs Your Refrigerator Needs Repair</h3>
+                        <p>Watch for food spoiling faster, ice buildup, constant running, water pooling, or unusual sounds. These warn of internal component failure.</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image"><img src="images/washer-dryer/washer-dryer2.png" alt="Dryer maintenance tips and cleaning Chicago" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="blog-content">
+                        <h3>Dryer Maintenance Tips</h3>
+                        <p>Lint buildup clogs ducts, wastes energy, damages clothes, and creates fire hazards. Professional cleaning reaches hidden areas you can't access.</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image"><img src="images/hvac/HVAC%2026.jpeg" alt="Mini split AC unit installation and repair Chicago" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="blog-content">
+                        <h3>Mini Split AC Units for Comfort</h3>
+                        <p>Mini split systems provide zone-based cooling without ductwork. Energy efficient, quiet, and easy to install. Professional service keeps them running smoothly.</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image"><img src="images/hvac/HVAC%2027%20%282%29.jpeg" alt="HVAC winter furnace preparation Chicago" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="blog-content">
+                        <h3>HVAC Winter Prep</h3>
+                        <p>Winter stress reveals hidden problems. Slow furnaces, faulty thermostats, and cracked heat exchangers become critical emergencies in cold weather.</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image"><img src="images/stove/stove1.png" alt="Oven stove safety repair Chicago" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="blog-content">
+                        <h3>Oven Safety Tips</h3>
+                        <p>Cracked seals, faulty igniters, and broken thermostats create safety hazards. Gas leaks and overheating damage your unit and endanger your family.</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image"><img src="images/hvac/HVAC%2027.jpeg" alt="AC anti-theft cage protection Chicago" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="blog-content">
+                        <h3>Protect Your AC Unit from Theft</h3>
+                        <p>AC unit theft is common in Chicago. Anti-theft cages secure your system while allowing proper airflow and maintenance access. Professional installation protects your investment.</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image"><img src="images/refrigerator/refrigerator15.jpeg" alt="Expensive refrigerator condenser replacement repair Chicago" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="blog-content">
+                        <h3>Expensive Refrigerator Repairs Worth Fixing</h3>
+                        <p>High-end refrigerators need expert repair. Condenser replacement, sealed system fixes, and control board repairs extend the life of your investment. Don't trust amateurs with expensive appliances.</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image"><img src="images/washer-dryer/washer-dryer1.png" alt="Washing machine water leak repair Chicago" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="blog-content">
+                        <h3>Washer Leaking Water</h3>
+                        <p>Leaking washers cause water damage costing thousands and create mold growth. Finding the leak source and fixing it properly requires professional expertise.</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image"><img src="images/refrigerator/refrigerator3.png" alt="Noisy refrigerator compressor repair Chicago" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="blog-content">
+                        <h3>Refrigerator Running Too Loud</h3>
+                        <p>Grinding, buzzing, and rattling sounds signal failing compressors, broken fans, and loose internal parts. Unusual noise only gets worse over time.</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image"><img src="images/hvac/HVAC%2028.jpeg" alt="Furnace heating system repair Chicago" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="blog-content">
+                        <h3>Furnace Systems Keep You Warm</h3>
+                        <p>Modern furnaces work hard in Chicago winters. Annual maintenance, filter changes, and professional inspections prevent costly failures when temperatures drop.</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image"><img src="images/stove/stove1.png" alt="Oven burning smell gas leak safety repair" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="blog-content">
+                        <h3>Strange Smells From Your Oven</h3>
+                        <p>Gas leaks smell like rotten eggs and are serious hazards. Burning plastic smells signal electrical damage. Don't cook in an oven that smells wrong.</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image"><img src="images/hvac/hvac1.png" alt="AC conditioner repair maintenance Chicago" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="blog-content">
+                        <h3>AC Maintenance Saves Money</h3>
+                        <p>Regular AC maintenance prevents emergency repairs during peak summer heat. Coil cleaning, refrigerant checks, and filter changes keep systems running efficiently all season.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <div class="contact-info">
+                <h2>Get Your Free Estimate - Chicago Appliance & HVAC Repair</h2>
+                
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <div>
+                        <strong>Phone</strong><br>
+                        <a href="tel:7732551773">773-255-1773</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <div>
+                        <strong>Service Area</strong><br>
+                        83rd St & Stoney Island<br>
+                        Chicago, IL 60619 | 30 mile radius
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <span class="contact-icon">🕐</span>
+                    <div>
+                        <strong>Hours</strong><br>
+                        Mon-Fri: 8:00am-3:00pm<br>
+                        Sat: 7:00am-12:00pm<br>
+                        Sun: 9:00am-12:00pm
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <div>
+                        <strong>Email</strong><br>
+                        <a href="mailto:service@expressapplianceonline.com">service@expressapplianceonline.com</a>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Twitter">𝕏</a>
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="#" title="YouTube">▶</a>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3>Get an Estimate</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">Service Needed</label>
+                        <input type="text" id="service" name="service" placeholder="e.g., Refrigerator Repair, HVAC Service" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit">Send Estimate Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Call Button -->
+    <a href="tel:7732551773" class="floating-call" title="Call us">📞</a>
+
+    <!-- Text Service CTA -->
+    <section class="text-service-cta">
+        <h3>💬 Text for Faster Service</h3>
+        <p>Message us at 773-255-1773 for quick responses and faster scheduling</p>
+        <a href="sms:7732551773" class="text-service-btn">Text Now</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Express Appliance Care & HVAC. All Rights Reserved. | <a href="#" style="color: var(--primary-blue); text-decoration: none;">Terms of Use</a> and <a href="#" style="color: var(--primary-blue); text-decoration: none;">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact Form Handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+
+            // Create mailto link with form data
+            const mailtoLink = `mailto:service@expressapplianceonline.com?subject=Free%20Estimate%20Request%20-%20${encodeURIComponent(service)}&body=Name:%20${encodeURIComponent(name)}%0APhone:%20${encodeURIComponent(phone)}%0AEmail:%20${encodeURIComponent(email)}%0AService:%20${encodeURIComponent(service)}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
+            
+            window.location.href = mailtoLink;
+            
+            // Reset form
+            this.reset();
+            alert('Thank you! Your estimate request has been sent to service@expressapplianceonline.com');
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .hvac-card, .testimonial-card, .blog-card, .guarantee-box').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+# Express Appliance Care & HVAC - robots.txt
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /private/
+
+# Crawl-delay in seconds (optional, be respectful)
+Crawl-delay: 1
+
+# Point to sitemap
+Sitemap: https://expressapplianceonline.com/sitemap.xml
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: msnbot
+Allow: /
+Crawl-delay: 1
