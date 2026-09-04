@@ -105,7 +105,8 @@ SERVICES = [
         slug="garbage-disposal-repair", label="Garbage Disposal", h1="Garbage Disposal Repair and Installation in Chicago",
         title="Garbage Disposal Repair Chicago | Express Appliance Care",
         desc="Garbage disposal repair and installation in Chicago. Jammed, humming, leaking, or dead disposals fixed or replaced. Same-day service. Call 773-255-1773.",
-        image="garbage-disposal-repair.jpg", alt="Garbage disposal mounted under a kitchen sink with drain and supply lines",
+        image="garbage-disposal-repair.jpg", alt="Garbage disposal mounted under a double kitchen sink with the drain trap and supply lines",
+        credit='Photo: <a href="https://commons.wikimedia.org/wiki/File:Under_Sink_Garbage_Disposal_and_White_Pipes_(53370206837).jpg" rel="noopener" target="_blank">Tony Webster</a>, <a href="https://creativecommons.org/licenses/by/2.0/" rel="noopener" target="_blank">CC BY 2.0</a>',
         blurb="Humming but not grinding, leaking under the sink, or completely dead. We repair or replace garbage disposals.",
         problems=["Disposal hums but does not grind", "Jammed and will not turn", "Leaking from the bottom or the sink flange",
                   "Trips the reset button repeatedly", "Drains slowly or backs up into the sink", "Unit is dead with no sound at all",
@@ -189,6 +190,8 @@ STYLE = """
         .hero h1 { font-size:36px; line-height:1.2; font-weight:700; }
         .hero p { margin-top:14px; font-size:18px; opacity:.95; }
         .hero img { width:100%; max-height:320px; object-fit:cover; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,.25); }
+        .credit { font-size:11px; opacity:.75; margin-top:6px; text-align:right; }
+        .credit a { color:#fff; }
         .cta-row { margin-top:22px; display:flex; flex-wrap:wrap; gap:12px; }
         .btn { display:inline-block; padding:13px 24px; border-radius:6px; font-weight:700; text-decoration:none; }
         .btn-red { background:var(--accent-red); color:#fff; }
@@ -383,7 +386,10 @@ def service_page(s):
                     <a class="btn btn-white" href="/#contact">Free estimate</a>
                 </div>
             </div>
-            <img src="{s['image']}" alt="{esc(s['alt'])}">
+            <div>
+                <img src="{s['image']}" alt="{esc(s['alt'])}">
+                {('<p class="credit">' + s['credit'] + '</p>') if s.get('credit') else ''}
+            </div>
         </div>
     </section>
     <main>
