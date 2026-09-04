@@ -1,14 +1,17 @@
 """Generate the service pages + services hub for expressapplianceonline.com.
 
 Run from the repo root:  python tools/build_pages.py
-Rewrites: services.html, <slug>.html for every entry in SERVICES, and sitemap.xml.
+Rewrites: services.html, <slug>.html for every entry in SERVICES, blog.html,
+<slug>.html for every post in tools/blog_posts.py, and sitemap.xml.
 Does NOT touch index.html (nav links there are edited once by hand).
 
 The site is a flat GitHub Pages repo with no build step, so every page is a
 self-contained single file. This script is the one place the shared header,
 footer, and schema live, so re-running it keeps every page consistent.
 """
-import io, os, re, html, datetime
+import io, os, re, html, datetime, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from blog_posts import POSTS
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
@@ -161,11 +164,6 @@ if not BRANDS:
     BRANDS = re.findall(r'>\s*([A-Z][A-Za-z&\- ]{1,30})\s*</(?:div|span|li)>', m.group(1)) if m else []
 BRANDS = [b.strip() for b in BRANDS if b.strip() and b.strip().lower() not in ("brands we service", "brands")]
 
-# blog teasers on the homepage, keyed by title, so service pages can link to the matching card
-BLOG = {}
-for img, h3, p in re.findall(r'<img src="([^"]+)"[^>]*>.*?<h3>([^<]+)</h3>.*?<p>([^<]+)</p>', INDEX[INDEX.find('id="blog"'):INDEX.find('id="contact"')], re.S):
-    BLOG[html.unescape(h3.strip())] = dict(img=img, text=html.unescape(p.strip()))
-
 def esc(s):
     return html.escape(s, quote=True)
 
@@ -247,7 +245,7 @@ def nav(active=""):
             <a href="services.html"{' class="active"' if active == 'services' else ''}>Services</a>
             <a href="/#brands">Brands</a>
             <a href="/#testimonials">Reviews</a>
-            <a href="/#blog">Blog</a>
+            <a href="blog.html"{' class="active"' if active == 'blog' else ''}>Blog</a>
             <a href="/#contact">Contact</a>
         </div>
     </nav>
@@ -360,18 +358,14 @@ def service_cards(exclude_slug=None, heading="Other services"):
 """
 
 def related_block(s):
-    titles = [t for t in s["related"] if t in BLOG]
-    if not titles:
+    by_title = {q["title"]: q for q in POSTS}
+    posts = [by_title[t] for t in s["related"] if t in by_title]
+    if not posts:
         return ""
-    cards = "".join(f"""                <a class="card" href="/#blog">
-                    <img src="{BLOG[t]['img']}" alt="{esc(t)}" loading="lazy">
-                    <div class="card-body"><h3>{esc(t)}</h3><p>{esc(BLOG[t]['text'])}</p></div>
-                </a>
-""" for t in titles)
     return f"""        <section style="margin:44px 0;">
             <h2>From our blog</h2>
             <div class="cards">
-{cards}            </div>
+{"".join(post_card(q) for q in posts)}            </div>
         </section>
 """
 
@@ -430,6 +424,106 @@ def hub_page():
 </html>
 """
 
+def post_jsonld(p):
+    return f"""    {{
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "{p['title']}",
+        "description": "{p['desc'].replace('"', "'")}",
+        "image": "{SITE}/{p['image']}",
+        "datePublished": "{p['date']}",
+        "dateModified": "{p['date']}",
+        "mainEntityOfPage": "{SITE}/{p['slug']}.html",
+        "author": {{"@type": "Organization", "name": "Express Appliance Care & HVAC"}},
+        "publisher": {{"@type": "Organization", "name": "Express Appliance Care & HVAC", "logo": {{"@type": "ImageObject", "url": "{SITE}/logo.jpeg"}}}}
+    }}"""
+
+def blog_index_jsonld():
+    items = ",\n".join(f'            {{"@type": "ListItem", "position": {i+1}, "name": "{p["title"]}", "url": "{SITE}/{p["slug"]}.html"}}' for i, p in enumerate(POSTS))
+    return f"""    {{
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Appliance and HVAC Repair Tips and Articles",
+        "itemListElement": [
+{items}
+        ]
+    }}"""
+
+def nice_date(iso):
+    d = datetime.date.fromisoformat(iso)
+    return f"{d.strftime('%B')} {d.day}, {d.year}"
+
+def post_card(q):
+    return f"""                <a class="card" href="{q['slug']}.html">
+                    <img src="{q['image']}" alt="{esc(q['alt'])}" loading="lazy">
+                    <div class="card-body"><h3>{esc(q['title'])}</h3><p>{esc(q['desc'])}</p></div>
+                </a>
+"""
+
+def blog_post(p):
+    svc = next((x for x in SERVICES if x["slug"] == p["service"]), None)
+    sections = ""
+    for h, paras in p["sections"]:
+        sections += f"            <h2>{esc(h)}</h2>\n" + "".join(f"            <p>{esc(x)}</p>\n" for x in paras)
+    related = [q for q in POSTS if q["service"] == p["service"] and q["slug"] != p["slug"]][:3]
+    related_html = ""
+    if related:
+        related_html = ('        <section style="margin:44px 0;">\n            <h2>Related articles</h2>\n            <div class="cards">\n'
+                        + "".join(post_card(q) for q in related) + "            </div>\n        </section>\n")
+    svc_html = ""
+    if svc:
+        svc_html = f"""            <div class="problems" style="margin:36px 0;">
+                <h3>Need a hand with this?</h3>
+                <p style="margin:0 0 12px;">{esc(svc['blurb'])}</p>
+                <a class="btn btn-red" href="{svc['slug']}.html">{esc(svc['label'])} in Chicago</a>
+            </div>
+"""
+    return head(p["title"] + " | Express Appliance Care", p["desc"], p["slug"] + ".html", p["image"], post_jsonld(p)) + f"""<body>
+{info_bar()}{nav('blog')}    <section class="hero">
+        <div class="hero-inner">
+            <div>
+                <p style="margin:0 0 10px;font-size:14px;opacity:.85;"><a href="blog.html" style="color:#fff;">Tips &amp; Articles</a> &middot; {nice_date(p['date'])}</p>
+                <h1>{esc(p['title'])}</h1>
+                <p>{esc(p['desc'])}</p>
+                <div class="cta-row">
+                    <a class="btn btn-red" href="tel:{PHONE_TEL}">Call {PHONE}</a>
+                    <a class="btn btn-white" href="/#contact">Free estimate</a>
+                </div>
+            </div>
+            <img src="{p['image']}" alt="{esc(p['alt'])}">
+        </div>
+    </section>
+    <main>
+        <article style="max-width:820px;">
+            <p style="font-size:18px;color:var(--dark-gray);">{esc(p['intro'])}</p>
+{sections}{svc_html}        </article>
+{related_html}{service_cards(heading="Our services")}    </main>
+{cta_band(svc['label'] if svc else "appliance or HVAC service")}{footer()}</body>
+</html>
+"""
+
+def blog_index():
+    title = "Appliance & HVAC Repair Tips | Express Appliance Care"
+    desc = "Practical appliance and HVAC advice from Express Appliance Care in Chicago: refrigerators, washers, dryers, ovens, furnaces, AC, and seasonal maintenance."
+    return head(title, desc, "blog.html", "HVAC25.jpeg", blog_index_jsonld()) + f"""<body>
+{info_bar()}{nav('blog')}    <section class="hero">
+        <div class="hero-inner" style="grid-template-columns:1fr;text-align:center;">
+            <div>
+                <h1>Appliance and HVAC Repair Tips</h1>
+                <p>Straight answers about the problems we see every week in Chicago homes, and what you can do before you call.</p>
+            </div>
+        </div>
+    </section>
+    <main>
+        <section>
+            <div class="cards">
+{"".join(post_card(q) for q in POSTS)}            </div>
+        </section>
+{promise_block()}    </main>
+{cta_band("appliance or HVAC service")}{footer()}</body>
+</html>
+"""
+
 def sitemap():
     def url(loc, lastmod, freq, pri):
         return f"    <url>\n        <loc>{loc}</loc>\n        <lastmod>{lastmod}</lastmod>\n        <changefreq>{freq}</changefreq>\n        <priority>{pri}</priority>\n    </url>\n"
@@ -438,6 +532,9 @@ def sitemap():
     out += url(SITE + "/services.html", TODAY, "monthly", "0.9")
     for s in SERVICES:
         out += url(f"{SITE}/{s['slug']}.html", TODAY, "monthly", "0.8")
+    out += url(SITE + "/blog.html", TODAY, "weekly", "0.8")
+    for p in POSTS:
+        out += url(f"{SITE}/{p['slug']}.html", p["date"], "monthly", "0.6")
     out += url(SITE + "/terms.html", "2026-09-03", "yearly", "0.3")
     out += url(SITE + "/privacy.html", "2026-09-03", "yearly", "0.3")
     return out + "</urlset>\n"
@@ -446,5 +543,8 @@ if __name__ == "__main__":
     for s in SERVICES:
         io.open(s["slug"] + ".html", "w", encoding="utf-8", newline="\n").write(service_page(s))
     io.open("services.html", "w", encoding="utf-8", newline="\n").write(hub_page())
+    for p in POSTS:
+        io.open(p["slug"] + ".html", "w", encoding="utf-8", newline="\n").write(blog_post(p))
+    io.open("blog.html", "w", encoding="utf-8", newline="\n").write(blog_index())
     io.open("sitemap.xml", "w", encoding="utf-8", newline="\n").write(sitemap())
-    print(f"wrote {len(SERVICES)} service pages + services.html + sitemap.xml; brands={len(BRANDS)}; blog teasers={len(BLOG)}")
+    print(f"wrote {len(SERVICES)} service pages + services.html + {len(POSTS)} posts + blog.html + sitemap.xml; brands={len(BRANDS)}")
