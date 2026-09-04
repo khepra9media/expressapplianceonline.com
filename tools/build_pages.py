@@ -105,7 +105,7 @@ SERVICES = [
         slug="garbage-disposal-repair", label="Garbage Disposal", h1="Garbage Disposal Repair and Installation in Chicago",
         title="Garbage Disposal Repair Chicago | Express Appliance Care",
         desc="Garbage disposal repair and installation in Chicago. Jammed, humming, leaking, or dead disposals fixed or replaced. Same-day service. Call 773-255-1773.",
-        image="garbage-disposal-repair.jpg", alt="Technician mounting a garbage disposal under a kitchen sink",
+        image="garbage-disposal-repair.jpg", alt="Garbage disposal mounted under a kitchen sink with drain and supply lines",
         blurb="Humming but not grinding, leaking under the sink, or completely dead. We repair or replace garbage disposals.",
         problems=["Disposal hums but does not grind", "Jammed and will not turn", "Leaking from the bottom or the sink flange",
                   "Trips the reset button repeatedly", "Drains slowly or backs up into the sink", "Unit is dead with no sound at all",
