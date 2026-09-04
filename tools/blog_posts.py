@@ -10,7 +10,8 @@ POSTS = [
     dict(
         slug="signs-your-refrigerator-needs-repair",
         title="Signs Your Refrigerator Needs Repair",
-        desc="Food spoiling early, ice buildup, constant running, water pooling, or new noises. What each refrigerator warning sign means and when to call for repair in Chicago.",
+        desc="Food spoiling early, ice buildup, constant running, water pooling, or new noises. What each refrigerator warning sign means and when to call for repair.",
+        seo_title="Signs Your Refrigerator Needs Repair | Express Appliance",
         image="refrigerator18.jpeg", alt="Technician repairing a refrigerator",
         date="2026-09-03", service="refrigerator-repair",
         intro="A refrigerator rarely fails all at once. It usually gives you a few weeks of warning first. Catching these signs early is the difference between a small part replacement and a lost fridge full of groceries.",
@@ -32,7 +33,7 @@ POSTS = [
     dict(
         slug="dryer-maintenance-tips",
         title="Dryer Maintenance Tips",
-        desc="Lint buildup wastes energy, ruins clothes, and causes house fires. Simple dryer maintenance steps for Chicago homes and when to call for professional vent cleaning.",
+        desc="Lint buildup wastes energy, ruins clothes, and causes house fires. Simple dryer maintenance steps for Chicago homes and when to call for vent cleaning.",
         image="dryer.png", alt="Clothes dryer",
         date="2026-09-03", service="washer-dryer-repair",
         intro="Dryers are simple machines, and most of what goes wrong with them comes down to one thing: lint. A few minutes of maintenance keeps a dryer running efficiently and, more importantly, safely.",
@@ -94,7 +95,7 @@ POSTS = [
     dict(
         slug="oven-safety-tips",
         title="Oven Safety Tips",
-        desc="Cracked door seals, weak igniters, and failed thermostats are safety problems, not just annoyances. What to check on a gas or electric oven and when to stop using it.",
+        desc="Cracked door seals, weak igniters, and failed thermostats are safety problems. What to check on a gas or electric oven and when to stop using it.",
         image="stove19.jpeg", alt="Kitchen stove and oven",
         date="2026-09-03", service="stove-oven-repair",
         intro="An oven that is not working right is more than an inconvenience. Gas leaks, overheating, and electrical faults are real hazards in a kitchen. Here is what to watch for and what to do about it.",
@@ -132,6 +133,7 @@ POSTS = [
     dict(
         slug="expensive-refrigerator-repairs-worth-fixing",
         title="Expensive Refrigerator Repairs Worth Fixing",
+        seo_title="Refrigerator Repairs Worth Fixing | Express Appliance Care",
         desc="Condenser, sealed-system, and control board repairs on high-end refrigerators. When a big repair still beats replacing the unit, and when it does not.",
         image="refrigerator15.jpeg", alt="Technician servicing a high-end refrigerator",
         date="2026-09-03", service="refrigerator-repair",

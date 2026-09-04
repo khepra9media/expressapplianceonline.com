@@ -39,7 +39,7 @@ SERVICES = [
     ),
     dict(
         slug="water-heater-repair", label="Hot Water Tank Installation & Repair", h1="Hot Water Tank Installation and Repair in Chicago",
-        title="Water Heater Repair & Installation Chicago | Express Appliance",
+        title="Water Heater Repair Chicago | Express Appliance Care",
         desc="Hot water tank repair and installation in Chicago. No hot water, leaks, pilot light problems, new tank installs. Same-day service. Call 773-255-1773.",
         image="water-heater-rheem-proterra.jpg", alt="Rheem ProTerra heat pump water heater installed in a Chicago home",
         blurb="No hot water, a leaking tank, or a pilot that will not stay lit. We repair and replace gas and electric water heaters.",
@@ -410,7 +410,7 @@ def service_page(s):
 
 def hub_page():
     title = "Appliance & HVAC Services Chicago | Express Appliance Care"
-    desc = "All appliance and HVAC services from Express Appliance Care in Chicago: refrigerator, washer, dryer, stove, water heater, AC, furnace, and duct work. 773-255-1773."
+    desc = "All appliance and HVAC services from Express Appliance Care in Chicago: refrigerator, washer, dryer, stove, water heater, AC, furnace, ducts. 773-255-1773."
     return head(title, desc, "services.html", "HVAC25.jpeg", hub_jsonld()) + f"""<body>
 {info_bar()}{nav('services')}    <section class="hero">
         <div class="hero-inner" style="grid-template-columns:1fr;text-align:center;">
@@ -484,7 +484,7 @@ def blog_post(p):
                 <a class="btn btn-red" href="{svc['slug']}.html">{esc(svc['label'])} in Chicago</a>
             </div>
 """
-    return head(p["title"] + " | Express Appliance Care", p["desc"], p["slug"] + ".html", p["image"], post_jsonld(p)) + f"""<body>
+    return head(p.get("seo_title") or (p["title"] + " | Express Appliance Care"), p["desc"], p["slug"] + ".html", p["image"], post_jsonld(p)) + f"""<body>
 {info_bar()}{nav('blog')}    <section class="hero">
         <div class="hero-inner">
             <div>
@@ -541,8 +541,7 @@ def sitemap():
     out += url(SITE + "/blog.html", TODAY, "weekly", "0.8")
     for p in POSTS:
         out += url(f"{SITE}/{p['slug']}.html", p["date"], "monthly", "0.6")
-    out += url(SITE + "/terms.html", "2026-09-03", "yearly", "0.3")
-    out += url(SITE + "/privacy.html", "2026-09-03", "yearly", "0.3")
+    # terms.html / privacy.html are noindex,follow - deliberately NOT listed in the sitemap.
     return out + "</urlset>\n"
 
 if __name__ == "__main__":
