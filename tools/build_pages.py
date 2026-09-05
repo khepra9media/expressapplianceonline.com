@@ -16,6 +16,7 @@ from blog_posts import POSTS
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 SITE = "https://expressapplianceonline.com"
+GA_MEASUREMENT_ID = "G-ZWZY46H1VZ"  # GA4 property "Express Appliance Care & HVAC", stream 15722460860
 PHONE = "773-255-1773"
 PHONE_TEL = "7732551773"
 EMAIL = "Prorod360@gmail.com"
@@ -309,6 +310,14 @@ def head(title, desc, path, image, jsonld):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZWZY46H1VZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){{dataLayer.push(arguments);}}
+      gtag('js', new Date());
+      gtag('config', 'G-ZWZY46H1VZ');
+    </script>
     <meta name="description" content="{esc(desc)}">
     <title>{esc(title)}</title>
     <link rel="canonical" href="{SITE}/{path}">
