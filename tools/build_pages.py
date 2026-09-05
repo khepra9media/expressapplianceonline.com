@@ -185,6 +185,13 @@ STYLE = """
         .nav-content .logo img { height:64px; object-fit:contain; }
         .nav-content a { color:var(--dark-gray); text-decoration:none; font-weight:600; padding:6px 0; }
         .nav-content a:hover, .nav-content a.active { color:var(--primary-blue); }
+        .dropdown { position:relative; display:inline-block; }
+        .dropdown-content { display:none; position:absolute; left:50%; transform:translateX(-50%); top:100%; background:var(--primary-blue); min-width:300px; box-shadow:0 8px 16px rgba(0,0,0,.2); padding:8px 0; z-index:20; border-radius:0 0 8px 8px; }
+        @media (max-width:820px) { .dropdown { position:static; } .dropdown-content { position:absolute; left:0; right:0; transform:none; min-width:0; border-radius:0; } nav { position:relative; } }
+        .dropdown-content a { display:block; color:#fff; padding:10px 20px; font-weight:500; }
+        .dropdown-content a:hover { background:rgba(255,255,255,.15); color:#fff; }
+        @media (hover:hover) { .dropdown:hover .dropdown-content { display:block; } }
+        .dropdown.open .dropdown-content { display:block; }
         .hero { background:linear-gradient(135deg, var(--primary-blue), #003d99); color:#fff; padding:56px 20px; }
         .hero-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1.2fr 1fr; gap:36px; align-items:center; }
         .hero h1 { font-size:36px; line-height:1.2; font-weight:700; }
@@ -245,7 +252,12 @@ def nav(active=""):
             <a href="/" class="logo"><img src="logo.jpeg" alt="Express Appliance Care &amp; HVAC"></a>
             <a href="/">Home</a>
             <a href="/#about">About us</a>
-            <a href="services.html"{' class="active"' if active == 'services' else ''}>Services</a>
+            <div class="dropdown">
+                <a href="services.html"{' class="active"' if active == 'services' else ''} aria-haspopup="true" aria-expanded="false">Services &#9662;</a>
+                <div class="dropdown-content">
+                    <a href="services.html"><strong>All services</strong></a>
+{"".join(f'                    <a href="{x["slug"]}.html">{esc(x["label"])}</a>' + chr(10) for x in SERVICES)}                </div>
+            </div>
             <a href="/#brands">Brands</a>
             <a href="/#testimonials">Reviews</a>
             <a href="blog.html"{' class="active"' if active == 'blog' else ''}>Blog</a>
@@ -259,6 +271,24 @@ def footer():
         <p>&copy; 2026 Express Appliance Care &amp; HVAC. All Rights Reserved. | <a href="terms.html">Terms of Use</a> and <a href="privacy.html">Privacy Policy</a></p>
     </footer>
     <a href="tel:{PHONE_TEL}" class="floating-call" title="Call us">&#128222;</a>
+    <script>
+    (function () {{
+        var dd = document.querySelector('.dropdown');
+        if (!dd) return;
+        var trigger = dd.querySelector(':scope > a');
+        trigger.addEventListener('click', function (e) {{
+            // First tap opens the list; a second tap on "Services" follows the link.
+            if (!dd.classList.contains('open')) {{
+                e.preventDefault();
+                dd.classList.add('open');
+                trigger.setAttribute('aria-expanded', 'true');
+            }}
+        }});
+        document.addEventListener('click', function (e) {{
+            if (!dd.contains(e.target)) {{ dd.classList.remove('open'); trigger.setAttribute('aria-expanded', 'false'); }}
+        }});
+    }})();
+    </script>
 """
 
 def cta_band(service_label):

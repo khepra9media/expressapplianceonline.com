@@ -236,6 +236,7 @@
             background: rgba(255,255,255,0.2);
         }
 
+        .dropdown.open .dropdown-content,
         .dropdown:hover .dropdown-content {
             display: block;
         }
@@ -1030,8 +1031,9 @@
             <a href="#home">Home</a>
             <a href="#about">About us</a>
             <div class="dropdown">
-                <a href="services.html">Services</a>
+                <a href="services.html" aria-haspopup="true" aria-expanded="false">Services</a>
                 <div class="dropdown-content">
+                    <a href="services.html"><strong>All services</strong></a>
                     <a href="refrigerator-repair.html">Refrigerator Repair</a>
                     <a href="water-heater-repair.html">Hot Water Tank Installation & Repair</a>
                     <a href="washer-dryer-repair.html">Washer & Dryer Repair</a>
@@ -1529,6 +1531,24 @@
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
+    </script>
+    <script>
+    (function () {
+        var dd = document.querySelector('.dropdown');
+        if (!dd) return;
+        var trigger = dd.querySelector(':scope > a');
+        trigger.addEventListener('click', function (e) {
+            // First tap opens the list; a second tap on "Services" follows the link.
+            if (!dd.classList.contains('open')) {
+                e.preventDefault();
+                dd.classList.add('open');
+                trigger.setAttribute('aria-expanded', 'true');
+            }
+        });
+        document.addEventListener('click', function (e) {
+            if (!dd.contains(e.target)) { dd.classList.remove('open'); trigger.setAttribute('aria-expanded', 'false'); }
+        });
+    })();
     </script>
 </body>
 </html>
