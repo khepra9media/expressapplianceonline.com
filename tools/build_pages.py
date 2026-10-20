@@ -295,11 +295,11 @@ def footer():
 def cta_band(service_label):
     return f"""    <section class="cta-band">
         <h2>Need {esc(service_label)} today?</h2>
-        <p>Same-day service across Chicago and a 30-mile radius. Free estimates. Ask about senior pricing.</p>
+        <p>Same-day service across Chicago and a 30-mile radius. The service call fee goes toward your repair if you approve the work. Ask about senior pricing.</p>
         <div class="cta-row" style="justify-content:center;">
             <a class="btn btn-white" href="tel:{PHONE_TEL}">Call {PHONE}</a>
             <a class="btn btn-white" href="sms:{PHONE_TEL}">Text us</a>
-            <a class="btn btn-white" href="/#contact">Request a free estimate</a>
+            <a class="btn btn-white" href="/#contact">Request service</a>
         </div>
     </section>
 """
@@ -376,7 +376,7 @@ def promise_block():
     return """        <section class="promise">
             <div><strong>Same-day service</strong>We arrive on time and get your appliance working today whenever parts allow.</div>
             <div><strong>Up to one year warranty</strong>Parts and labor on work performed. If it's not right, we make it right.</div>
-            <div><strong>Fair, upfront pricing</strong>No surprise charges. A clear estimate before the work starts.</div>
+            <div><strong>Fair, upfront pricing</strong>No surprise charges. The service call fee is part of your total if you approve the work — never billed twice.</div>
             <div><strong>30 years in Chicago</strong>Serving the South Side and a 30-mile radius around 83rd and Stony Island.</div>
         </section>
 """
@@ -422,7 +422,7 @@ def service_page(s):
                 <p>{esc(s['blurb'])}</p>
                 <div class="cta-row">
                     <a class="btn btn-red" href="tel:{PHONE_TEL}">Call {PHONE}</a>
-                    <a class="btn btn-white" href="/#contact">Free estimate</a>
+                    <a class="btn btn-white" href="/#contact">Get an estimate</a>
                 </div>
             </div>
             <div>
@@ -458,7 +458,7 @@ def hub_page():
                 <p>Thirty years of repair and installation work across the South Side and a 30-mile radius. Pick a service to see what we fix and what to expect.</p>
                 <div class="cta-row" style="justify-content:center;">
                     <a class="btn btn-red" href="tel:{PHONE_TEL}">Call {PHONE}</a>
-                    <a class="btn btn-white" href="/#contact">Free estimate</a>
+                    <a class="btn btn-white" href="/#contact">Get an estimate</a>
                 </div>
             </div>
         </div>
@@ -532,7 +532,7 @@ def blog_post(p):
                 <p>{esc(p['desc'])}</p>
                 <div class="cta-row">
                     <a class="btn btn-red" href="tel:{PHONE_TEL}">Call {PHONE}</a>
-                    <a class="btn btn-white" href="/#contact">Free estimate</a>
+                    <a class="btn btn-white" href="/#contact">Get an estimate</a>
                 </div>
             </div>
             <img src="{p['image']}" alt="{esc(p['alt'])}">
