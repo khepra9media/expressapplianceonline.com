@@ -1393,7 +1393,7 @@
     <section class="contact" id="contact">
         <div class="contact-content">
             <div class="contact-info">
-                <h2>Get Your Estimate - Chicago Appliance & HVAC Repair</h2>
+                <h2>Request Service - Chicago Appliance & HVAC Repair</h2>
                 <p style="margin:-6px 0 18px;">A technician comes out and diagnoses the problem for a service call fee. Approve the repair and that fee is part of your total — never billed twice.</p>
 
                 <div class="contact-item">
@@ -1434,7 +1434,7 @@
             </div>
 
             <div class="contact-form">
-                <h3>Get an Estimate</h3>
+                <h3>Request Service</h3>
                 <form id="contactForm">
                     <div class="form-group">
                         <label for="name">Your Name</label>
@@ -1462,7 +1462,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit">Send Estimate Request</button>
+                        <button type="submit">Send Service Request</button>
                     </div>
                 </form>
             </div>
@@ -1510,13 +1510,13 @@
             const message = document.getElementById('message').value;
 
             // Create mailto link with form data
-            const mailtoLink = `mailto:Prorod360@gmail.com?subject=Estimate%20Request%20-%20${encodeURIComponent(service)}&body=Name:%20${encodeURIComponent(name)}%0APhone:%20${encodeURIComponent(phone)}%0AEmail:%20${encodeURIComponent(email)}%0AService:%20${encodeURIComponent(service)}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
+            const mailtoLink = `mailto:Prorod360@gmail.com?subject=Service%20Request%20-%20${encodeURIComponent(service)}&body=Name:%20${encodeURIComponent(name)}%0APhone:%20${encodeURIComponent(phone)}%0AEmail:%20${encodeURIComponent(email)}%0AService:%20${encodeURIComponent(service)}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
             
             window.location.href = mailtoLink;
             
             // Reset form
             this.reset();
-            alert('Thank you! Your estimate request has been sent to Prorod360@gmail.com');
+            alert('Thank you! Your service request has been sent to Prorod360@gmail.com');
         });
 
         // Add scroll animations

@@ -299,7 +299,7 @@ def cta_band(service_label):
         <div class="cta-row" style="justify-content:center;">
             <a class="btn btn-white" href="tel:{PHONE_TEL}">Call {PHONE}</a>
             <a class="btn btn-white" href="sms:{PHONE_TEL}">Text us</a>
-            <a class="btn btn-white" href="/#contact">Request service</a>
+            <a class="btn btn-white" href="/#contact">Request service now</a>
         </div>
     </section>
 """
@@ -422,7 +422,7 @@ def service_page(s):
                 <p>{esc(s['blurb'])}</p>
                 <div class="cta-row">
                     <a class="btn btn-red" href="tel:{PHONE_TEL}">Call {PHONE}</a>
-                    <a class="btn btn-white" href="/#contact">Get an estimate</a>
+                    <a class="btn btn-white" href="/#contact">Request service now</a>
                 </div>
             </div>
             <div>
@@ -458,7 +458,7 @@ def hub_page():
                 <p>Thirty years of repair and installation work across the South Side and a 30-mile radius. Pick a service to see what we fix and what to expect.</p>
                 <div class="cta-row" style="justify-content:center;">
                     <a class="btn btn-red" href="tel:{PHONE_TEL}">Call {PHONE}</a>
-                    <a class="btn btn-white" href="/#contact">Get an estimate</a>
+                    <a class="btn btn-white" href="/#contact">Request service now</a>
                 </div>
             </div>
         </div>
@@ -532,7 +532,7 @@ def blog_post(p):
                 <p>{esc(p['desc'])}</p>
                 <div class="cta-row">
                     <a class="btn btn-red" href="tel:{PHONE_TEL}">Call {PHONE}</a>
-                    <a class="btn btn-white" href="/#contact">Get an estimate</a>
+                    <a class="btn btn-white" href="/#contact">Request service now</a>
                 </div>
             </div>
             <img src="{p['image']}" alt="{esc(p['alt'])}">
